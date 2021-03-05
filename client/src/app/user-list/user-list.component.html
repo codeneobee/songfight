@@ -1,0 +1,6 @@
+<ul>
+  <li *ngFor="let user of users">
+    {{user.username}}
+    <span *ngIf="user.ready">ready</span>
+  </li>
+</ul>

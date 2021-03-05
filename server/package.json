@@ -1,0 +1,19 @@
+{
+  "name": "songfight-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/app.ts",
+    "start:dev": "nodemon src/app.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^3.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "tslint": "^6.1.3",
+    "typescript": "^4.2.3"
+  }
+}

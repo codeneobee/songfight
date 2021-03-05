@@ -1,0 +1,6 @@
+<app-user-list></app-user-list>
+<form (ngSubmit)="submitSpotifyLink()">
+  <label for="link-input">Enter your Spotify link</label>
+  <input id="link-input" [formControl]="linkInput">
+</form>
+<button (click)="startGame()"></button>

@@ -1,0 +1,16 @@
+{
+  "name": "songfight",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start:server": "npm run --prefix ./server start",
+    "start:server:dev": "npm run --prefix ./server start:dev",
+    "start:client": "npm run --prefix ./client start",
+    "start": "concurrently npm:start:server npm:start:client",
+    "start:dev": "concurrently npm:start:server:dev npm:start:client"
+  },
+  "devDependencies": {
+    "concurrently": "^6.0.0"
+  },
+  "dependencies": {}
+}
