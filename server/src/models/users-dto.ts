@@ -1,15 +1,15 @@
-import {Room} from './room';
+import { Room } from './room';
 
 export class UsersDto {
     constructor(
         public username: string,
-        public ready: boolean
+        public song: string
     ) {
     }
 
     static createUsersDtoList(room: Room) {
         return Array.from(room.users).map(user => {
-            return {username: user.username, ready: !!room.songs.get(user.username)}
+            return { username: user.username, song: room.songs.get(user.socketId) }
         })
     }
 }

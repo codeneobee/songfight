@@ -30,10 +30,16 @@ io.on('connection', (socket: Socket) => {
         const validatedLink = validateSpotifyLink(link);
         if (!validatedLink) return;
 
-        room.songs.set([...room.users].find(user => user.socketId === socket.id).username, link)
+        room.songs.set([...room.users].find(user => user.socketId === socket.id).socketId, link)
         io.to(room.roomId).emit('users', UsersDto.createUsersDtoList(room))
     })
 
+    socket.on('startGame', () => {
+        if (room.users.size == 8) {
+            room.gameStarted = true;
+            io.to(room.roomId).emit('startGame')
+        }
+    })
 
     socket.on('disconnect', () => {
         room.users.forEach(user => {

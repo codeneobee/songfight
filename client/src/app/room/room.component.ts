@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SocketService} from '../services/socket.service';
-import {FormControl} from '@angular/forms';
+import { SocketService } from '../services/socket.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-room',
@@ -20,6 +20,6 @@ export class RoomComponent implements OnInit {
   }
 
   startGame() {
-    this.socketService.emit('startGame', null)
+    this.socketService.emit('startGame');
   }
 }
