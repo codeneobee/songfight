@@ -1,7 +1,8 @@
-import {Socket} from 'socket.io';
-import {User} from './models/user';
-import {Room} from './models/room';
-import {UsersDto} from './models/users-dto';
+import { Socket } from 'socket.io';
+import { User } from './models/user';
+import { Room } from './models/room';
+import { UsersDto } from './models/users-dto';
+import { validateSpotifyLink } from './models/validateSpotify';
 
 const express = require('express');
 const app = express();
@@ -26,6 +27,9 @@ io.on('connection', (socket: Socket) => {
     })
 
     socket.on('addSong', (link: string) => {
+        const validatedLink = validateSpotifyLink(link);
+        if (!validatedLink) return;
+
         room.songs.set([...room.users].find(user => user.socketId === socket.id).username, link)
         io.to(room.roomId).emit('users', UsersDto.createUsersDtoList(room))
     })
