@@ -5,6 +5,12 @@
   ],
   "jsRules": {},
   "rules": {
+    "typedef": [
+      true,
+      "call-signature",
+      "parameter",
+      "arrow-parameter"
+    ],
     "trailing-comma": [
       false
     ]

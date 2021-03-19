@@ -1,15 +1,19 @@
-import { Room } from './room';
+import { PlayerSong } from "./player-song";
+import { Room } from "./room";
+import { User } from "./user";
 
-export class UsersDto {
-    constructor(
-        public username: string,
-        public song: string
-    ) {
-    }
+export class UserSongDto {
+  constructor(public username: string, public song: string) {}
 
-    static createUsersDtoList(room: Room) {
-        return Array.from(room.users).map(user => {
-            return { username: user.username, song: room.songs.get(user.socketId) }
-        })
-    }
+  static createUsersDtoList(room: Room): UserSongDto[] {
+    return Array.from(room.users).map(
+      (user: User) =>
+        new UserSongDto(
+          user.username,
+          room.songs.find(
+            (song: PlayerSong) => song.playerSocketId === user.socketId
+          ).songLink
+        )
+    );
+  }
 }
