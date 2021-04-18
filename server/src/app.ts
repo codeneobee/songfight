@@ -24,7 +24,7 @@ if (process.env.DEV_ENV) {
     room.songs.push(
       new PlayerSong(
         String(index),
-        "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC?si=495a138ab70142cc"
+        "https://open.spotify.com/track/4uLU6hMCjMI75M1A2tKUQC"
       )
     );
   }
@@ -49,12 +49,12 @@ io.on("connection", (socket: Socket) => {
     if (!validatedLink) return;
 
     room.songs.push(
-      new PlayerSong(room.getUserBySocketId(socket.id).socketId, link)
+      new PlayerSong(room.getUserBySocketId(socket.id).socketId, validatedLink)
     );
     io.to(room.roomId).emit("users", UserSongDto.createUsersDtoList(room));
   });
 
-  socket.on("startGame", () => {
+  socket.on("initializeGame", () => {
     if (room.songs.length !== MAX_PLAYERS) return;
 
     GameController.instantiateMatchups(io, room);

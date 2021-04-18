@@ -12,7 +12,7 @@ export class UserSongDto {
           user.username,
           room.songs.find(
             (song: PlayerSong) => song.playerSocketId === user.socketId
-          ).songLink
+          )?.songLink
         )
     );
   }
